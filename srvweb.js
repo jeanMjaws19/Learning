@@ -1,18 +1,19 @@
 import {createServer} from 'http';
+import dotenv from 'dotenv';
+dotenv.config();
 
-require('dotenv').config();
-
+const port = process.env.PING_LISTEN_PORT || 8080;
 const server = createServer((Request, Response) => {
-    if(request.method === 'GET' && request.url === '/ping') {
-        res.writeHead(200, {'Content-Type': 'application/json'});
-        res.end(JSON.stringify(req.headers));
+    if(Request.method === 'GET' && Request.url === '/ping') {
+        Response.writeHead(200, {'Content-Type': 'application/json'});
+        Response.end(JSON.stringify(Request.headers));
     }
     else {
-        res.writeHead(404);
-        res.end();
+        Response.writeHead(404);
+        Response.end();
     }}
 )
     
-server.listen(PING_LISTEN_PORT, '0.0.0.0', () => {
-    console.log(`Listening on port ${PING_LISTEN_PORT}`);     
+server.listen(port, '0.0.0.0', () => {
+    console.log(`Listening on port ${port}`);     
 })
