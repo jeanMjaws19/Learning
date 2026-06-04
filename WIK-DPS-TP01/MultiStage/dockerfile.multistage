@@ -4,14 +4,14 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
-COPY srvweb.js
+COPY srvweb.js ./
 
 # Stage 2 : Run
 
 FROM node:22-alpine
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci --omit=dev/
+RUN npm ci --omit=dev \
     && npm cache clean --force
 COPY --from=builder /app/srvweb.js
 EXPOSE 3030
