@@ -35,7 +35,21 @@ CMD ["node", "srvweb.js"]
 
 ---
 
-## Explication des différentes étapes
+## Utilisation du Dockerfile  
+
+### 1. Build de l'image 
+docker build -f dockerfile.singlestage -t srvweb:singlestage. 
+
+### 2. Run de l'image 
+docker run -p 3030:3030 srvweb:singlestage
+
+### 3. Test de fonctionnement 
+curl.exe http://localhost:3030/ping
+Les headers sont bien retournés.
+
+---
+
+## Explication des différentes étapes dans le Dockerfile 
 
 ### 1. Image de base
 
